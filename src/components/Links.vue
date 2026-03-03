@@ -1,11 +1,11 @@
 <template>
   <div v-if="siteLinks[0]" class="links">
     <div class="line">
-      <Icon size="20">
-        <Link />
-      </Icon>
+      <!-- 如果你有 Link 图标，可以保留；否则删掉这一行 -->
+      <iconify-icon icon="fa-solid:link" width="20" height="20" />
       <span class="title">网站列表</span>
     </div>
+
     <!-- 网站列表 -->
     <Swiper
       v-if="siteLinks[0]"
@@ -21,69 +21,74 @@
     >
       <SwiperSlide v-for="site in siteLinksList" :key="site">
         <el-row class="link-all" :gutter="20">
-          <el-col v-for="(item, index) in site" :span="8" :key="item">
+          <el-col v-for="(item, index) in site" :span="8" :key="item.link">
             <div
               class="item cards"
               :style="index < 3 ? 'margin-bottom: 20px' : null"
               @click="jumpLink(item)"
             >
-              <Icon size="26">
-                <component :is="siteIcon[item.icon]" />
-              </Icon>
+              <iconify-icon
+                :icon="getIconName(item.icon)"
+                width="26"
+                height="26"
+              />
               <span class="name text-hidden">{{ item.name }}</span>
             </div>
           </el-col>
         </el-row>
       </SwiperSlide>
+
       <div class="swiper-pagination" />
     </Swiper>
   </div>
 </template>
 
 <script setup>
-import { Icon } from "@vicons/utils";
-// 可前往 https://www.xicons.org 自行挑选并在此处引入
-import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire, LaptopCode } from "@vicons/fa"; // 注意使用正确的类别
-import { mainStore } from "@/store";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination, Mousewheel } from "swiper/modules";
-import siteLinks from "@/assets/siteLinks.json";
+import { computed } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Mousewheel } from 'swiper/modules'
+import siteLinks from '@/assets/siteLinks.json'
 
-const store = mainStore();
+// 如果你有 mainStore，保留；否则注释掉
+// import { mainStore } from '@/store'
+// const store = mainStore()
 
-// 计算网站链接
+// ─────────────── 图标名称映射 ───────────────
+const getIconName = (key) => {
+  const map = {
+    Blog: 'fa-solid:blog',
+    Youtube: 'fa-brands:youtube',
+    Douyin: 'fa-brands:tiktok',        // 抖音用 tiktok 图标
+    Bilibili: 'simple-icons:bilibili',
+    Cloud: 'fa-solid:cloud',
+    CompactDisc: 'fa-solid:compact-disc',
+    Compass: 'fa-solid:compass',
+    Book: 'fa-solid:book',
+    Fire: 'fa-solid:fire',
+    LaptopCode: 'fa-solid:laptop-code',
+  }
+  return map[key] || 'mdi:help-circle-outline' // 默认一个问号
+}
+
+// ─────────────── 分组计算 ───────────────
 const siteLinksList = computed(() => {
-  const result = [];
+  const result = []
   for (let i = 0; i < siteLinks.length; i += 6) {
-    const subArr = siteLinks.slice(i, i + 6);
-    result.push(subArr);
+    const subArr = siteLinks.slice(i, i + 6)
+    result.push(subArr)
   }
-  return result;
-});
+  return result
+})
 
-// 网站链接图标
-const siteIcon = {
-  Blog,
-  Cloud,
-  CompactDisc,
-  Compass,
-  Book,
-  Fire,
-  LaptopCode,
-};
-
-// 链接跳转
+// ─────────────── 跳转逻辑 ───────────────
 const jumpLink = (data) => {
-  if (data.name === "音乐" && store.musicClick) {
-    if (typeof $openList === "function") $openList();
-  } else {
-    window.open(data.link, "_blank");
-  }
-};
-
-onMounted(() => {
-  console.log(siteLinks);
-});
+  // 如果你有 store.musicClick 和 $openList，保留；否则注释掉这部分
+  // if (data.name === '音乐' && store.musicClick) {
+  //   if (typeof $openList === 'function') $openList()
+  // } else {
+    window.open(data.link, '_blank')
+  // }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -142,17 +147,16 @@ onMounted(() => {
       justify-content: center;
       padding: 0 10px;
       animation: fade 0.5s;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.02);
         background: rgb(0 0 0 / 40%);
         transition: 0.3s;
       }
-
       &:active {
         transform: scale(1);
       }
-
       .name {
         font-size: 1.1rem;
         margin-left: 8px;
