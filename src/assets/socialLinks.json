@@ -3,36 +3,42 @@
     "name": "Github",
     "icon": "/images/icon/github.png",
     "tip": "去 Github 看看",
-    "url": "https://github.com/imsyy"
+    "url": "https://github.com/xqdjwz"
   },
   {
-    "name": "BiliBili",
-    "icon": "/images/icon/bilibili.png",
-    "tip": "(゜-゜)つロ 干杯 ~",
-    "url": "https://space.bilibili.com/98544142"
+    "name": "WeChat",
+    "icon": "/images/icon/wechat.png",
+    "tip": "加我聊聊吧",
+    "url": "https://u.wechat.com/MCldYtlUqhb-la7nnBeoHeA?s=4"
   },
   {
     "name": "QQ",
     "icon": "/images/icon/qq.png",
     "tip": "有什么事吗",
-    "url": "https://res.abeim.cn/api/qq/?qq=1539250352"
+    "url": "https://qm.qq.com/q/CQWAszGn6g"
   },
   {
     "name": "Email",
     "icon": "/images/icon/email.png",
     "tip": "来封 Email ~",
-    "url": "mailto:one@imsyy.top"
+    "url": "mailto:one@xqdjwz"
   },
   {
     "name": "Twitter",
     "icon": "/images/icon/twitter.png",
     "tip": "你懂的 ~",
-    "url": "https://twitter.com/iimmsyy"
+    "url": "https://twitter.com/xqdjwz"
   },
   {
     "name": "Telegram",
     "icon": "/images/icon/telegram.png",
     "tip": "你懂的 ~",
-    "url": "https://t.me/bottom_user"
+    "url": "https://t.me/xqdjwz"
+  },
+  {
+    "name": "源码购买",
+    "icon": "/images/icon/shopping.png",
+    "tip": "源码购买",
+    "url": "https://vps123.eu.org"
   }
 ]
