@@ -73,8 +73,8 @@ const getIconName = (key) => {
 // ─────────────── 分组计算 ───────────────
 const siteLinksList = computed(() => {
   const result = []
-  for (let i = 0; i < siteLinks.length; i += 6) {
-    const subArr = siteLinks.slice(i, i + 6)
+  for (let i = 0; i < siteLinks.length; i += 9) {
+    const subArr = siteLinks.slice(i, i + 9)
     result.push(subArr)
   }
   return result
